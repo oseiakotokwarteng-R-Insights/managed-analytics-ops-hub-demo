@@ -1,0 +1,19 @@
+# Template, not active: Phase 9 decides where the state lives. A hosted runner starts empty, so restore the three state folders before the tick and save them after it.
+name: live-tick
+on:
+  schedule:
+    - cron: "15 6 * * *"      # 06:15 UTC, after the simulated night
+  workflow_dispatch: {}
+concurrency: live-tick        # one tick at a time
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30       # the spec budget
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.14" }
+      - run: pip install -r requirements.txt
+      # restore: warehouse/ (DuckDB file, live_clock.json), sources/ (delivered files), sources_live/ (generated future)
+      - run: python -m pipeline.live tick --catch-up
+      # save the three state folders again, then publish dashboard/ (static files) to the host

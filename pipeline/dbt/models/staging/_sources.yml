@@ -1,0 +1,33 @@
+version: 2
+sources:
+  - name: raw
+    schema: raw
+    description: As-received source data loaded by pipeline/ingest (append-only, every column text).
+    tables:
+      - name: erp_item_master
+      - name: erp_customer_master
+      - name: erp_vendor_master
+      - name: erp_warehouse_master
+      - name: erp_sales_order_header
+      - name: erp_sales_order_line
+      - name: erp_po_header
+      - name: erp_po_line
+      - name: wms_events
+      - name: carrier_a_shipments
+      - name: carrier_b_shipments
+      - name: carrier_b_tracking
+      - name: carrier_b_charges
+      - name: legacy_inv_trans
+      - name: legacy_vendor
+      - name: legacy_item_cost
+      - name: sheet_cells
+      - name: _file_registry
+      - name: _load_files
+      - name: _load_runs
+      - name: _alerts
+  - name: ops_raw
+    schema: ops
+    description: Build results recorded by pipeline/ops/record_dbt.py.
+    tables:
+      - name: dbt_invocation
+      - name: dbt_test_result

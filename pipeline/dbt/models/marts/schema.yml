@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: mart_stock_current
+    columns:
+      - name: item_no
+        tests: [not_null, relationships: {to: ref('dim_sku'), field: item_no}]
+      - name: wh_code
+        tests: [not_null, relationships: {to: ref('dim_warehouse'), field: wh_code}]
+      - name: risk
+        tests:
+          - accepted_values:
+              values: ['ok', 'at_risk', 'out_of_stock', 'low_demand']
+  - name: mart_stock_risk_daily
+    columns:
+      - name: risk
+        tests:
+          - accepted_values:
+              values: ['ok', 'at_risk', 'out_of_stock', 'low_demand']
+  - name: mart_ghost_stock_daily
+    columns:
+      - name: is_alert
+        tests: [not_null]
+  - name: mart_freight_shipment
+    columns:
+      - name: shipment_key
+        tests: [unique, not_null]
+  - name: mart_manual_effort
+    columns:
+      - name: handling_key
+        tests: [unique, not_null]

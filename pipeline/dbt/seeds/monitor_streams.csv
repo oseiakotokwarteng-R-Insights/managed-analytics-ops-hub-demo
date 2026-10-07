@@ -1,0 +1,17 @@
+stream,max_expected_gap_days,critical,owner,description
+wms:WH-01,1,true,warehouse ops,WMS event stream Phoenix (daily incl. weekends)
+wms:WH-02,1,true,warehouse ops,WMS event stream Tucson
+wms:WH-03,1,true,warehouse ops,WMS event stream Flagstaff
+wms:WH-04,1,true,warehouse ops,WMS event stream Las Vegas
+wms:WH-06,1,true,warehouse ops,WMS event stream El Paso
+erp_sales_order_line,1,true,ERP admin,Nightly sales-order line extract
+erp_sales_order_header,3,true,ERP admin,Nightly sales-order header extract (no Sunday orders)
+erp_po_header,4,true,ERP admin,Nightly PO header extract (weekends and holidays have no receipts)
+erp_po_line,4,true,ERP admin,Nightly PO line extract
+legacy_inv_trans,7,true,Albuquerque branch,Weekly dump of the legacy inventory system
+carrier_a_shipments,1,false,freight,Carrier A LTL daily shipment file
+carrier_b_shipments,3,false,freight,Carrier B parcel daily shipment file (no Sunday pickups)
+carrier_b_tracking,1,false,freight,Carrier B tracking events
+carrier_b_charges,5,false,freight,Carrier B invoice lines (invoiced on delivery days)
+sheet_cells_count,35,false,branch managers,Monthly cycle-count sheets
+sheet_cells_price,35,false,purchasing,Monthly vendor price override sheets

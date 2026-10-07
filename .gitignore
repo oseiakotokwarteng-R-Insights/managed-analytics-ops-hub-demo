@@ -1,0 +1,33 @@
+# Private repository: code, documents and configuration only. Everything below is generated, large, or the hidden answer key.
+/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# the answer key and everything derived from it directly (never published, never read by the pipeline)
+/truth/
+/truth_live/
+/truth_live_new/
+/sources_live_new/
+
+# generated source systems and the generated future (rebuilt by the generators, about 10 minutes)
+/sources/
+/sources_live/
+
+# warehouse, backups, replay copies, live clock state, locks, logs
+/warehouse/
+*.duckdb
+*.duckdb.wal
+
+# dbt build output
+/pipeline/dbt/target/
+/pipeline/dbt/logs/
+/pipeline/dbt/dbt_packages/
+
+# generated site data (regenerated from the warehouse) and the packaged bundle
+/dashboard/data/
+/dist/
+
+# scratch
+/scratch_repro/
+*.log

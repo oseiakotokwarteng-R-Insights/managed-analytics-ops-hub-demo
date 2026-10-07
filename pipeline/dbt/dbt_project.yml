@@ -1,0 +1,36 @@
+name: ops_hub
+version: "1.0"
+profile: ops_hub
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+on-run-start:
+  - "{{ ensure_ops_tables() }}"
+  - "{{ ensure_raw_layout_columns() }}"
+vars:
+  history_start: "2024-10-01"
+  history_end: "2026-09-30"
+models:
+  ops_hub:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+    core:
+      +schema: core
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+    quarantine:
+      +schema: quarantine
+      +materialized: table
+    ops:
+      +schema: ops
+      +materialized: table
+seeds:
+  ops_hub:
+    +schema: ref

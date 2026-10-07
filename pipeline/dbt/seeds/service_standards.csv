@@ -1,0 +1,3 @@
+direction,max_transit_days,basis
+outbound,4,Assumed customer-delivery standard: two days typical so anything past four days counts as slow
+inbound,6,Assumed inbound standard: three to four days typical so anything past six days counts as slow

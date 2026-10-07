@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: dim_sku
+    columns:
+      - name: item_no
+        tests: [unique, not_null]
+      - name: legacy_code
+        tests: [not_null]
+  - name: dim_warehouse
+    columns:
+      - name: wh_code
+        tests: [unique, not_null]
+      - name: system_of_record
+        tests:
+          - accepted_values:
+              values: ['WMS', 'LEGACY']
+  - name: dim_customer
+    columns:
+      - name: cust_acct
+        tests: [unique, not_null]
+  - name: dim_vendor
+    columns:
+      - name: vendor_no
+        tests: [unique, not_null]
+  - name: xwalk_sku
+    columns:
+      - name: item_no
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_sku'), field: item_no}
+  - name: fct_stock_movement
+    columns:
+      - name: movement_id
+        tests: [unique, not_null]
+      - name: item_no
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_sku'), field: item_no}
+      - name: wh_code
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_warehouse'), field: wh_code}
+      - name: movement_type
+        tests:
+          - accepted_values:
+              values: ['RECEIPT', 'SHIPMENT', 'TRANSFER_IN', 'TRANSFER_OUT', 'OPENING', 'COUNT_ADJUSTMENT', 'WRITE_OFF']
+      - name: qty_delta
+        tests: [not_null]
+      - name: local_date
+        tests: [not_null]
+  - name: fct_count
+    columns:
+      - name: count_key
+        tests: [unique, not_null]
+  - name: fct_shipment
+    columns:
+      - name: shipment_key
+        tests: [unique, not_null]
+      - name: carrier
+        tests:
+          - accepted_values:
+              values: ['CARRIER_A', 'CARRIER_B']
+  - name: fct_freight_charge
+    columns:
+      - name: line_id
+        tests: [not_null]
+  - name: fct_po_line
+    columns:
+      - name: po_no
+        tests: [not_null]
+  - name: mart_stock_daily
+    columns:
+      - name: item_no
+        tests: [not_null]
+      - name: est_on_hand
+        tests: [not_null]
+      - name: confidence
+        tests:
+          - accepted_values:
+              values: ['verified', 'carried', 'suspect']
+  - name: stg_wms__event
+    columns:
+      - name: event_id
+        tests: [unique, not_null]

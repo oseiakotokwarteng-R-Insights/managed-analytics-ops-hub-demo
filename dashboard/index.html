@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Synthetic-data demo of a unified operations hub: five messy source systems, one trusted view of stock, risk, exceptions, freight and pipeline health.">
+<title>Operations Hub Demo</title>
+<meta property="og:title" content="Operations Hub Demo: five messy systems, one trusted view">
+<meta property="og:description" content="A synthetic-data demo that reconciles an ERP, a warehouse system, two carriers, a legacy database and spreadsheets, and scores itself against a hidden answer key.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d5fa3'/%3E%3Cpath d='M7 22V10l9 7 9-7v12' fill='none' stroke='white' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="head">
+  <div class="brand">Northfield Supply Co.<small>Operations Hub demo</small></div>
+  <span class="pill synthetic" title="Every number here comes from generated data, not a real company"><span class="only-desktop">SYNTHETIC DATA</span><span class="only-mobile">SYNTHETIC</span></span>
+  <span class="pill live" id="live" hidden></span>
+  <span class="spacer"></span>
+  <div class="asof only-desktop" id="asof">loading</div>
+  <button class="theme" id="theme" aria-label="Switch between light and dark" title="Light / dark">&#9680;</button>
+</header>
+<nav class="nav" id="nav" aria-label="Sections"></nav>
+<div class="more" id="more" role="menu"></div>
+<main id="main" tabindex="-1"><div class="loading">Loading the demo…</div></main>
+<div class="sheet-bg" id="sheetbg" aria-hidden="true"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Item detail"></div></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

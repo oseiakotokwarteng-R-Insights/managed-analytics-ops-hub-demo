@@ -1,0 +1,15 @@
+reason_code,defect_class,severity,disposition,owner_role,suggested_action
+L5_QUANTITY_UNPARSEABLE,L5,warning,excluded,Albuquerque branch,Re-key the quantity from the paper ticket; stock estimate is flagged until the next count
+L1_ITEM_AMBIGUOUS,L1,warning,excluded,Albuquerque branch,Confirm which revision the 8-character code meant
+sku_unresolved,X2,info,excluded,branch manager,Correct the SKU on the count sheet; the count is not used until then
+date_outside_sheet_month,X5,info,excluded,branch manager,Correct the count date; the count is not used until then
+W5_RECEIPT_ITEM_UNRESOLVED,W5,warning,review,warehouse ops,Check which item was physically received against this PO
+F2_REFERENCE_UNMATCHED,F2,info,review,freight,Identify the order or PO this shipment belongs to
+L6_VENDOR_WEAK_MATCH,L6,info,review,purchasing,Confirm whether this legacy vendor is a duplicate of the suggested vendor
+E2_NEAR_DUPLICATE_ORDER_LINE,E2,info,flagged,customer service,Confirm whether this is a re-keyed duplicate order
+E3_QUANTITY_NOT_POSITIVE,E3,warning,excluded,customer service,Correct the order quantity
+E5B_NO_CASE_SIZE,E5b,warning,excluded,item master owner,Add the case size to the item master
+E4_WAREHOUSE_UNKNOWN,E4,warning,excluded,customer service,Set the ship-from warehouse on the order
+C3_TRANSFER_OUT_WITHOUT_IN,C3,warning,flagged,warehouse ops,Confirm receipt of the transfer at the destination
+C1_RECEIPT_QUANTITY_VARIANCE,C1,info,flagged,receiving,Correct the ERP receipt quantity to match the warehouse count
+X6_PRICE_CONFLICT,X6,info,flagged,purchasing,Confirm which of the two vendor prices is right; the later entry is used until then

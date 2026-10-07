@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: alerts_unified
+    columns:
+      - name: alert_id
+        tests: [unique, not_null]
+      - name: severity
+        tests:
+          - accepted_values:
+              values: ['ERROR', 'WARNING', 'INFO']
+      - name: alert_type
+        tests:
+          - accepted_values:
+              values: ['load_or_schema', 'stream_stale', 'volume_anomaly', 'duplicate_file', 'value_format_drift', 'dq_rate_out_of_control', 'model_test_failed']
+  - name: pipeline_health_daily
+    columns:
+      - name: as_of
+        tests: [unique, not_null]
+      - name: health
+        tests:
+          - accepted_values:
+              values: ['green', 'amber', 'red']
+  - name: freshness_daily
+    columns:
+      - name: stream
+        tests:
+          - not_null
+          - relationships: {to: ref('monitor_streams'), field: stream}
+  - name: dq_metric_weekly
+    columns:
+      - name: metric
+        tests: [not_null]

@@ -1,0 +1,9 @@
+ops_hub:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('OPS_HUB_DB', '../../warehouse/ops_hub.duckdb') }}"
+      threads: 1
+      settings:
+        TimeZone: UTC

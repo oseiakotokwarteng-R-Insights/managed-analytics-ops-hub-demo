@@ -1,0 +1,12 @@
+{
+  // The public demo: a Cloudflare Worker that only serves static files (the bundle built by `python -m pipeline.package`).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ops-hub-demo",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "../dist/public"
+  },
+  "routes": [
+    { "pattern": "ops-demo.managedanalytics.co", "custom_domain": true }
+  ]
+}

@@ -1,0 +1,15 @@
+handling_key,label,minutes_per_item,basis
+legacy_code_resolved,Legacy item code looked up against the item master,0.25,A spreadsheet lookup per transaction
+legacy_date_settled,Ambiguous legacy date settled from dump week and ERP,5,Open two systems and compare
+legacy_vendor_repaired,Unknown legacy vendor id repaired from the PO,3,Find the PO and the vendor record
+receipt_item_corrected,Mis-keyed receipt re-assigned from the PO,6,Compare receipt with PO lines and fix
+ship_confirmation_inferred,Missing ship confirmation reconstructed from pick/pack and ERP,4,Trace the order through two systems
+order_item_remapped,Order line keyed with a superseded item re-pointed,2,Look up successor item and edit
+order_duplicate_dropped,Re-keyed duplicate order line dropped,2,Spot the duplicate and cancel it
+order_case_converted,Quantity entered in cases converted to units,1,Look up case size and multiply
+order_warehouse_filled,Missing ship-from warehouse filled,2,Check customer default or sibling line
+carrier_shipment_matched,Carrier shipment matched to its order or PO,1.5,Look up the reference and confirm
+carrier_duplicate_flagged,Duplicate carrier charge spotted for dispute,3,Compare invoice lines
+count_sku_repaired,Count-sheet SKU typo repaired,2,Find the intended item
+count_compared_with_book,Count compared with the book and variance posted,0.5,Compare one count row
+review_queue_row,Row left for a person (review queue),5,Investigate and decide one ambiguous row

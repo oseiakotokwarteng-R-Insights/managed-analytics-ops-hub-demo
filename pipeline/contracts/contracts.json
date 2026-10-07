@@ -1,0 +1,544 @@
+{
+ "description": "Source contracts: expected columns per raw table, versioned. A file whose columns match no approved version is held, never silently loaded.",
+ "tables": {
+  "erp_item_master": {
+   "kind": "csv",
+   "glob": "erp/item_master.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "item_no",
+      "description",
+      "category",
+      "uom",
+      "case_qty",
+      "case_uom",
+      "list_price",
+      "std_cost",
+      "weight_lb",
+      "vendor_no",
+      "status",
+      "superseded_by",
+      "created_date",
+      "wms_item_id",
+      "wms_link_date"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_customer_master": {
+   "kind": "csv",
+   "glob": "erp/customer_master.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "cust_acct",
+      "name",
+      "cust_type",
+      "ship_to_city",
+      "default_wh",
+      "terms",
+      "discount_pct",
+      "created_date",
+      "inactive_date"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_vendor_master": {
+   "kind": "csv",
+   "glob": "erp/vendor_master.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "vendor_no",
+      "name",
+      "city",
+      "quoted_lead_time_days",
+      "is_import"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_warehouse_master": {
+   "kind": "csv",
+   "glob": "erp/warehouse_master.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "wh_code",
+      "name",
+      "city",
+      "timezone"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_sales_order_header": {
+   "kind": "csv",
+   "glob": "erp/sales_order_header/*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "_(\\d{8})\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [
+    "last_modified"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "extract_date",
+      "order_no",
+      "cust_acct",
+      "order_ts_local",
+      "req_date",
+      "ship_via",
+      "status",
+      "last_modified"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_sales_order_line": {
+   "kind": "csv",
+   "glob": "erp/sales_order_line/*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "_(\\d{8})\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [
+    "last_modified"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "extract_date",
+      "order_no",
+      "line_no",
+      "item_no",
+      "qty_ordered",
+      "qty_shipped",
+      "uom",
+      "unit_price",
+      "ship_wh",
+      "status",
+      "last_ship_date",
+      "last_modified"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_po_header": {
+   "kind": "csv",
+   "glob": "erp/po_header/*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "_(\\d{8})\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [
+    "extract_date"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "extract_date",
+      "po_no",
+      "vendor_no",
+      "ship_to_wh",
+      "po_date",
+      "promised_date",
+      "status",
+      "received_date"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "erp_po_line": {
+   "kind": "csv",
+   "glob": "erp/po_line/*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "_(\\d{8})\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [
+    "extract_date"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "extract_date",
+      "po_no",
+      "line_no",
+      "item_no",
+      "qty_ordered",
+      "uom",
+      "unit_cost",
+      "qty_received",
+      "received_date",
+      "status"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "wms_events": {
+   "kind": "jsonl",
+   "glob": "wms/*/*.jsonl",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "(\\d{4}-\\d{2}-\\d{2})\\.jsonl$",
+    "fmt": "%Y-%m-%d"
+   },
+   "time_cols": [
+    "event_ts",
+    "published_at"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "event_id",
+      "warehouse",
+      "event_type",
+      "event_ts",
+      "published_at",
+      "item_id",
+      "quantity",
+      "direction",
+      "uom",
+      "bin",
+      "ref_type",
+      "ref_no",
+      "operator",
+      "reason",
+      "schema_version",
+      "batch_id"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "carrier_a_shipments": {
+   "kind": "json_array",
+   "glob": "freight/carrier_a/*.json",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "shipments_(\\d{8})",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "bol_no",
+      "pro_no",
+      "shipper_ref",
+      "service",
+      "origin",
+      "destination",
+      "pieces",
+      "weight_lb",
+      "status",
+      "events"
+     ],
+     "optional": [
+      "charges"
+     ]
+    }
+   ]
+  },
+  "carrier_b_shipments": {
+   "kind": "csv",
+   "glob": "freight/carrier_b/shipments_*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "shipments_(\\d{8})(?:_[a-z]+)?\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [
+    "ship_ts_local"
+   ],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "tracking_no",
+      "reference",
+      "ship_ts_local",
+      "service",
+      "weight_lb",
+      "pieces",
+      "origin_city",
+      "dest_city"
+     ],
+     "optional": []
+    },
+    {
+     "id": "v2",
+     "approved_on": "2026-06-08",
+     "approved_by": "demo operator (simulated approval after the 2026-06-04 carrier change)",
+     "required": [
+      "tracking_no",
+      "reference",
+      "ship_ts_local",
+      "service_level",
+      "delivery_type",
+      "wt_lbs",
+      "dim_weight",
+      "pieces",
+      "origin_city",
+      "dest_city"
+     ],
+     "optional": [],
+     "canonical_map": {
+      "weight_lb": "wt_lbs",
+      "service": "service_level+delivery_type (GND-RES -> GROUND+RES, GND-COM -> GROUND+COM)"
+     }
+    }
+   ]
+  },
+  "carrier_b_tracking": {
+   "kind": "csv",
+   "glob": "freight/carrier_b/tracking_*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "tracking_(\\d{8})(?:_[a-z]+)?\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "tracking_no",
+      "event_ts_local",
+      "status",
+      "location"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "carrier_b_charges": {
+   "kind": "csv",
+   "glob": "freight/carrier_b/charges_*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "charges_(\\d{8})(?:_[a-z]+)?\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "tracking_no",
+      "charge_code",
+      "amount",
+      "invoice_no"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "legacy_inv_trans": {
+   "kind": "csv",
+   "glob": "legacy/inv_trans_*.csv",
+   "arrival": {
+    "rule": "name_date",
+    "regex": "inv_trans_(\\d{8})\\.csv$",
+    "fmt": "%Y%m%d"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "trans_id",
+      "item_code",
+      "trans_type",
+      "trans_date",
+      "qty",
+      "unit_cost",
+      "ref_no",
+      "party_id",
+      "entry_terminal",
+      "memo"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "legacy_vendor": {
+   "kind": "csv",
+   "glob": "legacy/vendor.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "vendor_id",
+      "vendor_name",
+      "address",
+      "city_state",
+      "phone",
+      "terms",
+      "status"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "legacy_item_cost": {
+   "kind": "csv",
+   "glob": "legacy/item_cost.csv",
+   "arrival": {
+    "rule": "static",
+    "date": "2024-10-01"
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [
+      "item_code",
+      "vendor_id",
+      "std_cost",
+      "eff_date"
+     ],
+     "optional": []
+    }
+   ]
+  },
+  "sheet_cells_count": {
+   "kind": "xlsx",
+   "glob": "spreadsheets/count_sheets/*/*.xlsx",
+   "arrival": {
+    "rule": "month_plus",
+    "regex": "(\\d{4}-\\d{2})_count",
+    "days": 3
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [],
+     "optional": [
+      "sheet_kind",
+      "sheet_name",
+      "sheet_row",
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8",
+      "c9",
+      "c10",
+      "cell_types"
+     ]
+    }
+   ],
+   "raw_table": "sheet_cells",
+   "sheet_kind": "count"
+  },
+  "sheet_cells_price": {
+   "kind": "xlsx",
+   "glob": "spreadsheets/price_overrides/*.xlsx",
+   "arrival": {
+    "rule": "month_plus",
+    "regex": "(\\d{4}-\\d{2})_vendor",
+    "days": 7
+   },
+   "time_cols": [],
+   "versions": [
+    {
+     "id": "v1",
+     "approved_on": "2024-10-01",
+     "required": [],
+     "optional": [
+      "sheet_kind",
+      "sheet_name",
+      "sheet_row",
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8",
+      "c9",
+      "c10",
+      "cell_types"
+     ]
+    }
+   ],
+   "raw_table": "sheet_cells",
+   "sheet_kind": "price"
+  }
+ }
+}

@@ -1,6 +1,19 @@
 # Publishing and launch
 
-Nothing has been published. No repository exists, no host is configured and no DNS has been touched. This document says what would be public, what stays private, and the choices to make before launch.
+## Status: launched 2026-10-07
+
+- **Live site:** https://ops-demo.managedanalytics.co (a Cloudflare Worker named `ops-hub-demo` serving the static bundle; custom domain on the `managedanalytics.co` zone; HTTPS, indexable).
+- **Private repository:** `oseiakotokwarteng-R-Insights/managed-analytics-ops-hub-demo` (code and documents only).
+- **Main website:** `managedanalytics.co` links to the demo from the case-studies section and from the Data Engineering and Analytics service cards (repository `managed-analytics-website`, auto-deploys on push to `main`).
+- **Live clock:** initialised with launch date 2026-10-07 (the dashboard shows the end of history, 2026-09-30, on launch day, then advances one simulated day per real day).
+- **Nightly job:** Windows Task Scheduler task `OpsHubNightly`, daily at 03:00 on the build machine, runs `deploy/nightly.ps1` (advance the clock, rebuild, package, upload, verify). It uses the Cloudflare login saved by `wrangler login` and catches up after missed days (`StartWhenAvailable`). Log: `warehouse/nightly.log`. Remove it with `Unregister-ScheduledTask -TaskName OpsHubNightly -Confirm:$false`.
+- **Manual deploy:** `deploy/deploy_demo.ps1` (package, upload, check that the live site serves the same fingerprint).
+
+The rest of this document is the plan the launch followed, kept for reference.
+
+## Original plan
+
+
 
 ## Public and private
 

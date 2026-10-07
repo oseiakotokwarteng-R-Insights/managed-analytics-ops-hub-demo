@@ -31,3 +31,8 @@ __pycache__/
 # scratch
 /scratch_repro/
 *.log
+
+# Cloudflare tooling cache (holds the account id)
+.wrangler/
+deploy/.wrangler/
+node_modules/

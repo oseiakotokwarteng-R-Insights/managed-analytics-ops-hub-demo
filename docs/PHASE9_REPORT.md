@@ -31,15 +31,15 @@ Subdomain and host; launch date (the generated year ends 2027-09-30); where the 
 
 | Check | Measured | Criterion | Result |
 |---|---|---|---|
-| building the bundle twice gives the identical bundle | 2,827 files, 41.0 MB; fingerprints a28087f5162c7e8d and a28087f5162c7e8d | identical | PASS |
+| building the bundle twice gives the identical bundle | 2,827 files, 41.0 MB; fingerprints 046139866933e049 and 046139866933e049 | identical | PASS |
 | only web file types are published, and the bundle is far inside static-host limits | types {'.css': 1, '.html': 1, '.js': 11, '.json': 2813, '.txt': 1, '_headers': 1}; largest file 0.87 MB; 2,827 files | web types only; < 20,000 files; no file over 5 MB | PASS |
 | nothing private is in the bundle: no answer-key names, local paths, database names, addresses or keys | 0 matches over 2,828 text files | 0 | PASS |
 | every file the pages refer to exists, including one history file per item | 11 scripts; 0 broken references; 2,800 item histories for 2,800 items | none broken, one per item | PASS |
 | the bundle serves from a plain static web server: every page, script and data file answers and every JSON file parses | 53 requests, 0 failures | 0 failures | PASS |
 | search engines are kept out until launch, and data is never cached stale | default robots: Disallow: /; --indexable: Allow: /; data cache rule present: True | Disallow by default, Allow with the flag, no-cache on data | PASS |
-| launch settings still empty (set at launch, see PUBLISHING.md) | contact link: not set; site url: not set | reported | INFO |
-| a first commit holds code and documents only: small, with no generated data and no answer key | 195 files, 1.9 MB; forbidden files: 0 | < 25 MB and none forbidden | PASS |
-| no keys or passwords in anything that would be committed | 0 matches over 195 files | 0 | PASS |
+| launch settings still empty (set at launch, see PUBLISHING.md) | contact link: https://managedanalytics.co/#contact; site url: https://ops-demo.managedanalytics.co | reported | INFO |
+| a first commit holds code and documents only: small, with no generated data and no answer key | 199 files, 1.9 MB; forbidden files: 0 | < 25 MB and none forbidden | PASS |
+| no keys or passwords in anything that would be committed | 0 matches over 199 files | 0 | PASS |
 | every module imports from a clean copy of what would be committed (no hidden dependence on generated files) | 37 modules; failures: none | all import | PASS |
 | every dependency is pinned, and everything the code imports is listed | 10 pinned lines (dbt-core, dbt-duckdb and pytest included: True); imported but not listed: none | all pinned with ==, none missing | PASS |
 | the data dictionary documents every table and is current (regenerating changes nothing) | 108 documented of 108 tables and views; unchanged on regeneration: True | all, unchanged | PASS |

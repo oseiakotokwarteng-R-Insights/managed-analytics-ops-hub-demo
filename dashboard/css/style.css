@@ -38,6 +38,9 @@ button { font: inherit; color: inherit; }
 .pill.live::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--good); margin-right: 6px; vertical-align: 1px; }
 .spacer { flex: 1; }
 .asof { font-size: .75rem; color: var(--muted); text-align: right; line-height: 1.2; white-space: nowrap; }
+.powered { text-align: center; font-size: .78rem; color: var(--muted); padding: 18px 16px 22px; }
+.powered a { color: var(--brand); font-weight: 600; text-decoration: none; }
+.powered a:hover { text-decoration: underline; }
 .theme { border: 1px solid var(--line); background: transparent; border-radius: 10px; min-width: 40px; min-height: 40px; cursor: pointer; }
 
 /* navigation: bottom bar on phones */
